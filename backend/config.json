@@ -6,17 +6,18 @@
     "retries": 0
 },
 "network_scan": {
-    "network": "192.168.1.0/24",
+    "network": "192.168.8.0/24",
     "ping_timeout_ms": 1000,
     "max_parallel": 20
 },
 "logging": {
     "enabled": true,
-    "level": "INFO",
-    "file": "scanner.log"
+    "level": "info",
+    "file_path": "scanner.log"
 },
 "output": {
-    "save_to_file": true,
-    "filename": "devices_found.json"
+    "enabled": true,
+    "format": "json",
+    "file_path": "devices_found.json"
 }
 }

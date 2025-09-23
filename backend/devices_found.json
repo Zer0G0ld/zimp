@@ -1,0 +1,177 @@
+[
+  {
+    "name": "SWITCH 9",
+    "ip": "192.168.8.12",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "SWITCH 4",
+    "ip": "192.168.8.15",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "BRN3C2AF48B71F9",
+    "ip": "192.168.8.16",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "BRNB4220087DC73",
+    "ip": "192.168.8.7",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "SWITCH 3",
+    "ip": "192.168.8.9",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "SWITCH 8",
+    "ip": "192.168.8.40",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "SWITCH 7",
+    "ip": "192.168.8.31",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "SWITCH 5",
+    "ip": "192.168.8.27",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "SWITCH 2",
+    "ip": "192.168.8.26",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "SWITCH 6",
+    "ip": "192.168.8.58",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "SWITCH 10",
+    "ip": "192.168.8.48",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "SWITCH 1",
+    "ip": "192.168.8.41",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "NPI2D8423",
+    "ip": "192.168.8.66",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "BRN3C2AF4E3CE6D",
+    "ip": "192.168.8.100",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "BRN3C2AF4A28864",
+    "ip": "192.168.8.91",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "BRN94DDF8118D97",
+    "ip": "192.168.8.120",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "NPI2D9405",
+    "ip": "192.168.8.138",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "NPI5597EE",
+    "ip": "192.168.8.142",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "BRNB422002A11F5",
+    "ip": "192.168.8.172",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "NPI2D963A",
+    "ip": "192.168.8.163",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "icip.intelbras.com.br",
+    "ip": "192.168.8.199",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "icip.intelbras.com.br",
+    "ip": "192.168.8.198",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "BRNB4220087DBF0",
+    "ip": "192.168.8.188",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "nasd",
+    "ip": "192.168.8.197",
+    "location": "",
+    "model": "",
+    "serial": ""
+  },
+  {
+    "name": "iDRAC-6Q8QQX2",
+    "ip": "192.168.8.181",
+    "location": "",
+    "model": "",
+    "serial": ""
+  }
+]
