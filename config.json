@@ -6,7 +6,7 @@
     "retries": 0
 },
 "network_scan": {
-    "network": "10.20.30.0/24",
+    "network": "192.168.1.0/24",
     "ping_timeout_ms": 1000,
     "max_parallel": 20
 },
