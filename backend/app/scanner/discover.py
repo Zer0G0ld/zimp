@@ -1,6 +1,7 @@
 import asyncio
 import logging
 from pathlib import Path
+from tqdm.asyncio import tqdm_asyncio
 import json
 import ipaddress
 import platform
@@ -46,7 +47,7 @@ async def ping(ip: str, timeout_ms: int) -> dict:
     try:
         proc = await asyncio.wait_for(
             asyncio.create_subprocess_exec(*cmd, stdout=asyncio.subprocess.DEVNULL, stderr=asyncio.subprocess.DEVNULL),
-            timeout=timeout_ms / 1000 + 2  # timeout extra
+            timeout=timeout_ms / 1000 + 2
         )
         code = await asyncio.wait_for(proc.wait(), timeout=timeout_ms / 1000 + 2)
         elapsed = (time.time() - start) * 1000
@@ -69,7 +70,7 @@ async def get_sysname(ip: str, snmp_community: str, snmp_version: str, snmp_time
                 ContextData(),
                 ObjectType(ObjectIdentity('SNMPv2-MIB', 'sysName', 0))
             ),
-            timeout=snmp_timeout + 2  # timeout extra
+            timeout=snmp_timeout + 2
         )
         if errorIndication or errorStatus:
             log_snmp_hint(ip, str(errorIndication or errorStatus), snmp_community, snmp_version)
@@ -99,7 +100,7 @@ async def scan_ip(
             snmp_result = await get_sysname(ip_str, snmp_community, snmp_version, snmp_timeout, snmp_retries, engine)
             result = {
                 "ip": ip_str,
-                "ping_status": ping_result["status"],
+                "ping_status": True,
                 "ping_rtt_ms": ping_result["rtt_ms"],
                 "snmp_name": snmp_result["name"],
                 "snmp_error": snmp_result["snmp_error"]
@@ -119,7 +120,7 @@ async def scan_network(
     max_parallel: int = 20,
     snmp_community: str = "public",
     snmp_version: str = "2c",
-    snmp_timeout: int = 5,  # timeout SNMP aumentado
+    snmp_timeout: int = 5,
     snmp_retries: int = 2,
     save_to: str | None = None
 ) -> list[ScanResult]:
@@ -132,20 +133,25 @@ async def scan_network(
     logging.info("⚠️ Certifique-se que o host tem acesso à rede e SNMP está habilitado nos dispositivos.")
 
     for ip in ipaddress.IPv4Network(network).hosts():
-        ip_str = str(ip)
-        tasks.append(asyncio.create_task(
-            scan_ip(ip_str, snmp_community, snmp_version, snmp_timeout, snmp_retries, ping_timeout, semaphore, engine)
-        ))
+        tasks.append(scan_ip(ip, snmp_community, snmp_version, snmp_timeout, snmp_retries, ping_timeout, semaphore, engine))
 
-    for task in asyncio.as_completed(tasks):
-        res: ScanResult = await task
-        results.append(res)
+    # Barra de progresso em tempo real
+    for res in tqdm_asyncio.as_completed(tasks, total=len(tasks), desc="Escaneando"):
+        r: ScanResult = await res
+        results.append(r)
 
     engine.transport_dispatcher.close_dispatcher()
-    logging.info(f"✅ Varredura finalizada. {len(results)} dispositivo(s) escaneado(s).")
+
+    # Resumo final
+    total = len(results)
+    ping_ok = sum(1 for r in results if r["ping_status"])
+    snmp_ok = sum(1 for r in results if r["snmp_name"])
+    logging.info(f"✅ Varredura finalizada: {total} host(s) escaneado(s). Ping OK: {ping_ok}, SNMP OK: {snmp_ok}")
 
     if save_to:
-        Path(save_to).write_text(json.dumps(results, indent=2, ensure_ascii=False), encoding="utf-8")
+        save_path = Path(save_to)
+        save_path.parent.mkdir(parents=True, exist_ok=True)
+        save_path.write_text(json.dumps(results, indent=2, ensure_ascii=False), encoding="utf-8")
         logging.info(f"📂 Resultados salvos em {save_to}")
 
     return results
