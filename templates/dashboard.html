@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Zimp</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Monitoramento de Impressoras</h1>
+    <form action="/scan" method="post">
+        <button type="submit">Iniciar Scan</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr><th>IP</th><th>Nome</th></tr>
+        </thead>
+        <tbody>
+        {% for d in devices %}
+            <tr>
+                <td>{{ d.ip }}</td>
+                <td>{{ d.name }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

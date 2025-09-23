@@ -1,0 +1,22 @@
+{
+"snmp": {
+    "community": "public",
+    "version": "2c",
+    "timeout": 1,
+    "retries": 0
+},
+"network_scan": {
+    "network": "10.20.30.0/24",
+    "ping_timeout_ms": 1000,
+    "max_parallel": 20
+},
+"logging": {
+    "enabled": true,
+    "level": "INFO",
+    "file": "scanner.log"
+},
+"output": {
+    "save_to_file": true,
+    "filename": "devices_found.json"
+}
+}
