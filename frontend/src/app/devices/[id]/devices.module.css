@@ -1,0 +1,56 @@
+.deviceContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: var(--background);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.deviceHeader {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--primary-text);
+  margin-bottom: 1rem;
+}
+
+.deviceInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+}
+
+.deviceLabel {
+  font-size: 1rem;
+  color: var(--secondary-text);
+  margin-right: 0.5rem;
+}
+
+.deviceValue {
+  font-size: 1.1rem;
+  color: var(--primary-text);
+  font-weight: 500;
+}
+
+.deviceActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.deviceButton {
+  padding: 0.75rem 1.5rem;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.deviceButton:hover {
+  background: var(--primary-hover);
+}
