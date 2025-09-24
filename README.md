@@ -3,7 +3,7 @@ ZIMP - Monitorar impressoras da rede
 
 Objetivo: temos como objetivo com este projeto  desenvolve uma solução para monitorar impressoras de qualquer marca e modelo vacilitando o monitoramento e centralizar problemas e avisos então centralizo tudo em um unico sistema com varias opções dependendo do modelo da impressora opções de manutenção remota e configuração tendo vacilidade de configuração de range e o que procurar e possibilitade de integração com outras ferramentas de monitoramento como `zabbix` fazendo assim o `ZIMP` ser um intermediario entre todas as impressoras da rede e o sistema de monitoramento que o tecnico usa dando uma gama de posibilidades de ações dentro do ambito de monitoramento e impressoras
 
-Backend (Flask) -> localhost:6201
+Backend (Flask) -> localhost:7501
 Frontend(React/Next.js) -> localhost:7500
 
 Estrutura será divida na raiz `backend` e `frontend` tendo um arquivo central que chama ambos em suas respoctivas portas 
