@@ -1,56 +1,133 @@
+/* frontend/src/app/devices/devices.module.css */
 .deviceContainer {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   padding: 2rem;
-  background: var(--background);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  background: var(--color-surface);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .deviceHeader {
   font-size: 2rem;
   font-weight: 600;
-  color: var(--primary-text);
+  color: var(--color-primary);
   margin-bottom: 1rem;
-}
-
-.deviceInfo {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 2rem;
-}
-
-.deviceLabel {
-  font-size: 1rem;
-  color: var(--secondary-text);
-  margin-right: 0.5rem;
-}
-
-.deviceValue {
-  font-size: 1.1rem;
-  color: var(--primary-text);
-  font-weight: 500;
 }
 
 .deviceActions {
   display: flex;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .deviceButton {
   padding: 0.75rem 1.5rem;
-  background: var(--primary);
+  background: var(--color-primary);
   color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.2s;
 }
 
-.deviceButton:hover {
-  background: var(--primary-hover);
+.deviceButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.deviceButton:hover:enabled {
+  background: var(--color-primary-hover);
+}
+
+/* Grid dos dispositivos */
+.devicesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.deviceInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--color-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.deviceInfo:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.deviceInfo.selected {
+  background: rgba(37, 99, 235, 0.15);
+  border: 1px solid var(--color-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.deviceInfo input[type="checkbox"] {
+  flex-shrink: 0;
+  display: none;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+
+.deviceHeaderRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.deviceName {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.deviceLabel {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  margin-right: 0.5rem;
+}
+
+.deviceValue {
+  font-size: 1.1rem;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .deviceInfo {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .deviceActions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .devicesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .deviceButton {
+    width: 100%;
+  }
 }

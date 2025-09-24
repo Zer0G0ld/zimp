@@ -1,12 +1,19 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
+import { ThemeProvider } from "../context/ThemeContext";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "ZIMP",
   description: "Sistema de monitoramento inteligente",
+  icons: {
+    icon: "/zimp.ico",
+    shortcut: "/zimp.png",
+    apple: "/zimp.png",
+  },
 };
 
 export default function RootLayout({
@@ -17,13 +24,16 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body>
-        <div className="app-container">
-          <Sidebar />
-          <div className="main-content">
-            <Navbar />
-            <main>{children}</main>
+        <ThemeProvider>
+          <div className="app-container">
+            <Sidebar />
+            <div className="main-content">
+              <Navbar />
+              <main>{children}</main>
+              <Footer />
+            </div>
           </div>
-        </div>
+        </ThemeProvider>
       </body>
     </html>
   );

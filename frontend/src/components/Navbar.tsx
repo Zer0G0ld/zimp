@@ -2,6 +2,7 @@
 
 import styles from "./Navbar.module.css";
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
     UserCircle,
@@ -28,7 +29,11 @@ export default function Navbar() {
 
     return (
         <nav className={`${styles.navbar} ${styles[theme]}`}>
-            <h1 className={styles.brand}>ZIMP</h1>
+            <Link href="/" className={styles.titleLink}>
+                <h1 className={styles.brand}>
+                    <Image src="/zimp.png" alt="ZIMP" width={50} height={50} />
+                </h1>
+            </Link>
             <button className={styles.hamburger} onClick={() => setMenuOpen(!menuOpen)}>
                 <Menu />
             </button>

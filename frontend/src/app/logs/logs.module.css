@@ -1,0 +1,96 @@
+/* ------------------------------
+  LOGS
+--------------------------------*/
+.logsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: var(--color-surface);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logsHeader {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.logsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+.logItem {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background: var(--color-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s;
+  gap: 0.5rem;
+}
+
+.logItem:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Timestamp */
+.logTimestamp {
+  font-size: 0.85rem;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+/* Badge de nível */
+.logLevel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  font-weight: 700;
+  width: 80px;
+  text-align: center;
+  border-radius: var(--border-radius);
+  padding: 0.25rem 0.5rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+/* Cores por nível */
+.logLevel.info {
+  background-color: var(--color-primary);
+}
+
+.logLevel.warn {
+  background-color: var(--color-warning);
+  color: #000;
+}
+
+.logLevel.error {
+  background-color: var(--color-danger);
+  color: #fff; /* ícone segue esta cor */
+}
+
+/* Mensagem */
+.logMessage {
+  font-size: 1rem;
+  color: var(--color-text);
+  word-break: break-word;
+}
+
+/* ------------------------------
+  LOGS - RESPONSIVIDADE
+--------------------------------*/
+@media (max-width: 768px) {
+  .logs-grid {
+    grid-template-columns: 1fr;
+  }
+}

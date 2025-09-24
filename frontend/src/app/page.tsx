@@ -25,11 +25,6 @@ export default function HomePage() {
         <li>✔️ Interface intuitiva</li>
       </ul>
     </section>
-    <footer className={styles.footer}>
-      <small>
-        &copy; {new Date().getFullYear()} ZIMP. Todos os direitos reservados.
-      </small>
-    </footer>
     </div>
     
     
