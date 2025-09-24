@@ -11,6 +11,7 @@
   font-family: "Inter", system-ui, Arial, sans-serif;
   padding: 2rem;
   overflow-x: hidden; /* evita scroll horizontal */
+  margin-left: var(--sidebar-width);
 }
 
 .dashboardHeader {

@@ -5,7 +5,6 @@ import styles from "./settings.module.css";
 import { User, Mail, Sun, Moon, Bell, Save, RefreshCw } from "lucide-react";
 import { useTheme } from "@/context/ThemeContext";
 
-// Tipagem do formulário
 interface SettingsForm {
   username: string;
   email: string;
@@ -21,25 +20,31 @@ export default function SettingsPage() {
     notifications: true,
   };
 
+  const { theme, setTheme } = useTheme();
   const [formData, setFormData] = useState<SettingsForm>(defaultForm);
   const [errors, setErrors] = useState<{ username?: string; email?: string }>({});
-  const { theme, setTheme } = useTheme();
 
   // Carrega do localStorage ao montar
   useEffect(() => {
     const saved = localStorage.getItem("settings");
     if (saved) {
-      const parsed = JSON.parse(saved);
+      const parsed: SettingsForm = JSON.parse(saved);
       setFormData(parsed);
+      setTheme(parsed.theme);
       applyTheme(parsed.theme);
     } else {
       applyTheme(defaultForm.theme);
     }
-  }, [defaultForm.theme]);
+  }, []);
 
-  // Aplica o tema dinamicamente
   const applyTheme = (theme: "light" | "dark") => {
     document.documentElement.setAttribute("data-theme", theme);
+  };
+
+  const handleThemeChange = (value: "light" | "dark") => {
+    setTheme(value);
+    setFormData(prev => ({ ...prev, theme: value }));
+    applyTheme(value);
   };
 
   const handleChange = (
@@ -54,16 +59,11 @@ export default function SettingsPage() {
         : target.value;
     const name = target.name;
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
 
-    // Se mudar o tema, aplica imediatamente
     if (name === "theme") applyTheme(value as "light" | "dark");
   };
 
-  // Validação simples
   const validate = (): boolean => {
     const newErrors: typeof errors = {};
     if (!formData.username.trim()) newErrors.username = "Nome de usuário é obrigatório";
@@ -84,17 +84,18 @@ export default function SettingsPage() {
 
   const handleReset = () => {
     setFormData(defaultForm);
+    setTheme(defaultForm.theme);
     applyTheme(defaultForm.theme);
     setErrors({});
     localStorage.removeItem("settings");
   };
 
   return (
-    <main className={styles.settingsContainer}>
+    <main className={styles.settingsContainer} style={{ marginLeft: "250px" }}>
       <h1 className={styles.settingsHeader}>Configurações</h1>
 
       <form className={styles.settingsForm} onSubmit={handleSubmit}>
-        {/* Seção Perfil */}
+        {/* Perfil */}
         <h2 className={styles.settingsSection}>Perfil</h2>
 
         <div className={styles.formGroup}>
@@ -107,7 +108,9 @@ export default function SettingsPage() {
             name="username"
             value={formData.username}
             onChange={handleChange}
+            onBlur={validate}
             className={styles.formInput}
+            title={errors.username}
           />
           {errors.username && <small className={styles.errorText}>{errors.username}</small>}
         </div>
@@ -122,12 +125,14 @@ export default function SettingsPage() {
             name="email"
             value={formData.email}
             onChange={handleChange}
+            onBlur={validate}
             className={styles.formInput}
+            title={errors.email}
           />
           {errors.email && <small className={styles.errorText}>{errors.email}</small>}
         </div>
 
-        {/* Seção Preferências */}
+        {/* Preferências */}
         <h2 className={styles.settingsSection}>Preferências</h2>
 
         <div className={styles.formGroup}>
@@ -137,8 +142,8 @@ export default function SettingsPage() {
           <select
             id="theme"
             name="theme"
-            value={theme}
-            onChange={(e) => setTheme(e.target.value as "light" | "dark")}
+            value={formData.theme}
+            onChange={(e) => handleThemeChange(e.target.value as "light" | "dark")}
             className={styles.formInput}
           >
             <option value="light">Claro</option>
@@ -147,13 +152,14 @@ export default function SettingsPage() {
         </div>
 
         <div className={styles.formGroupCheckbox}>
-          <label className={styles.formLabelIcon} style={{ cursor: "pointer" }}>
-            <input
-              type="checkbox"
-              name="notifications"
-              checked={formData.notifications}
-              onChange={handleChange}
-            />
+          <input
+            type="checkbox"
+            id="notifications"
+            name="notifications"
+            checked={formData.notifications}
+            onChange={handleChange}
+          />
+          <label htmlFor="notifications" className={styles.formLabelIcon}>
             <Bell size={16} /> Receber notificações
           </label>
         </div>

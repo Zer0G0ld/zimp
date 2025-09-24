@@ -1,41 +1,42 @@
 .navbar {
-  height: 64px;
-  background: var(--background, #fff);
-  border-bottom: 1px solid var(--border-color, #e5e7eb);
+  height: var(--navbar-height);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 var(--spacing-lg, 2rem);
-  box-shadow: var(--shadow-sm, 0 1px 2px rgba(0,0,0,0.05));
-  font-family: var(--font-family, 'Inter', sans-serif);
+  padding: 0 1.5rem;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
   position: relative;
   z-index: 10;
 }
 
-.brand {
-  font-size: var(--font-size-lg, 1.25rem);
-  font-weight: var(--font-weight-bold, 700);
-  color: var(--primary-color, #2563eb);
-  letter-spacing: 0.5px;
+/* Brand */
+.brandLink {
+  display: flex;
+  align-items: center;
 }
 
+/* Links */
 .links {
   display: flex;
   gap: 1.5rem;
+  align-items: center;
 }
 
 .link {
-  color: var(--text-muted, #6b7280);
+  color: var(--color-text-light);
   text-decoration: none;
-  font-size: var(--font-size-base, 1rem);
+  font-size: 1rem;
   transition: color 0.2s;
 }
 
 .link:hover {
-  color: var(--primary-color, #2563eb);
+  color: var(--color-primary);
 }
 
-/* Hamburger menu */
+/* Hamburger menu - mobile */
 .hamburger {
   display: none;
   background: none;
@@ -43,26 +44,27 @@
   cursor: pointer;
 }
 
-/* Actions (theme, notifications, user) */
+/* Actions (theme toggle, notifications, user) */
 .actions {
   display: flex;
   align-items: center;
-  gap: var(--spacing-md, 1.25rem);
+  gap: 1rem;
 }
 
 .themeToggle,
 .notifications,
-.user {
+.userButton {
   background: none;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  color: var(--color-text-light);
 }
 
 .badge {
-  background: var(--danger, #dc2626);
+  background: var(--color-danger);
   color: #fff;
   font-size: 0.7rem;
   font-weight: bold;
@@ -82,33 +84,23 @@
   position: absolute;
   top: 100%;
   right: 0;
-  background: var(--surface, #fff);
-  border: 1px solid #e5e7eb;
-  border-radius: var(--border-radius, 8px);
-  box-shadow: var(--shadow-md, 0 4px 6px rgba(0,0,0,0.1));
+  background: var(--color-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
   padding: 0.5rem 0;
   margin-top: 0.5rem;
   min-width: 150px;
   display: flex;
   flex-direction: column;
-  opacity: 0;
-  transform: translateY(-10px);
-  pointer-events: none;
-  transition: all 0.2s ease-in-out;
-}
-
-.userMenu:hover .dropdown,
-.userMenu .dropdown-open {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
+  z-index: 20;
 }
 
 .dropdownItem,
 .logout {
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
-  color: var(--text-muted, #6b7280);
+  color: var(--color-text-light);
   text-decoration: none;
   cursor: pointer;
   text-align: left;
@@ -116,27 +108,26 @@
 
 .dropdownItem:hover,
 .logout:hover {
-  background: var(--primary-hover, #2563eb);
+  background: var(--color-primary);
   color: #fff;
-  transition: background 0.2s;
 }
 
 /* Dark mode */
 [data-theme="dark"] .navbar {
-  background: #1f2937;
-  border-color: #374151;
+  background: var(--color-surface);
+  border-color: var(--border-color);
 }
 
 [data-theme="dark"] .link,
 [data-theme="dark"] .dropdownItem,
-[data-theme="dark"] .user {
-  color: #d1d5db;
+[data-theme="dark"] .userButton {
+  color: var(--color-text-light);
 }
 
 [data-theme="dark"] .link:hover,
 [data-theme="dark"] .dropdownItem:hover,
 [data-theme="dark"] .logout:hover {
-  background: #2563eb;
+  background: var(--color-primary);
   color: #fff;
 }
 
@@ -146,12 +137,13 @@
     display: none;
     flex-direction: column;
     position: absolute;
-    top: 64px;
+    top: var(--navbar-height);
     left: 0;
     width: 100%;
-    background: var(--background, #fff);
+    background: var(--color-surface);
     padding: 1rem;
-    border-top: 1px solid var(--border-color, #e5e7eb);
+    border-top: 1px solid var(--border-color);
+    gap: 1rem;
   }
 
   .links.open {
@@ -159,6 +151,6 @@
   }
 
   .hamburger {
-    display: block;
+    display: flex;
   }
 }

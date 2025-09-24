@@ -2,7 +2,6 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "../context/ThemeContext";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 
@@ -28,7 +27,6 @@ export default function RootLayout({
           <div className="app-container">
             <Sidebar />
             <div className="main-content">
-              <Navbar />
               <main>{children}</main>
               <Footer />
             </div>
